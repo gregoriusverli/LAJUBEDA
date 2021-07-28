@@ -1,0 +1,23 @@
+MVP:
+- Upload image pada aplikasi
+
+Tema:
+E-Commerce ->
+Lapak Jual Beli Dalaman
+
+1. Page Login
+- Users (filtering menggunakan role)
+
+2. Page Penjual: (Admins bisa akses Items (CRUD ITEM untuk tambah delete item) Dashboard Page) menggunakan role (Sellers)
+- List barang yang di jual
+- Page upload barang
+
+3. Page Pembeli: (Customers akses Transactions (untuk checkout page disini ada CRUD juga), Home Page untuk liat item dari User dengan role Sellers) menggunakan role
+- Home page list barang2 yang dijual
+- Page Checkout (Transaction)
+
+4. Page Tags:
+- Nambah tag
+
+
+LAJUBEDA
