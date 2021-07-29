@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           msg: `Password can not be empty`
-        }
+        }, 
       }
     },
     phoneNumber: {
@@ -52,6 +52,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           msg: `Phone number can not be empty`
+        },
+        isInt: {
+          msg: `Phone number must be number`
         }
       }
     },
