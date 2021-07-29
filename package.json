@@ -1,7 +1,7 @@
 {
-  "name": "LAJUBEDA",
+  "name": "lajubeda",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pair Project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +18,13 @@
   "devDependencies": {
     "nodemon": "^2.0.12",
     "sequelize-cli": "^6.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregorius-tech/LAJUBEDA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gregorius-tech/LAJUBEDA/issues"
+  },
+  "homepage": "https://github.com/gregorius-tech/LAJUBEDA#readme"
 }
