@@ -7,12 +7,100 @@ module.exports = {
       price: 1000000,
       weight: 1,
       quantity: 20,
-      picture: null,
-      description: null,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
       url: null,
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {})
+    },
+    {
+      itemName: "Motor",
+      price: 5000,
+      weight: 5,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, 
+    {
+      itemName: "Motor",
+      price: 1000000,
+      weight: 1,
+      quantity: 20,
+      picture: "images/1-bonds-mens-hipster.jpg",
+      description: "Ini deskripsinya",
+      url: null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },], {})
     /**
      * Add seed commands here.
      *

@@ -1,4 +1,4 @@
-const {User} = require('../models')
+const {User, Item} = require('../models')
 const multer = require('multer')
 const fs = require('fs')
 
@@ -19,7 +19,9 @@ class sellerController {
     }
 
     static uploadItemGet(req, res){
-        res.render('pages/seller/uploadPage')
+        const sellerId = req.params.id
+
+        res.render('pages/seller/uploadPage', {sellerId})
     }
 
     static uploadItemPost(req, res){
@@ -27,7 +29,7 @@ class sellerController {
 
         var storage = multer.diskStorage({
             destination: function(req, file, cb){
-                var dir = "./images"
+                var dir = "./public/images"
         
                 if(!fs.existsSync(dir)){
                     fs.mkdirSync(dir)
@@ -39,7 +41,7 @@ class sellerController {
             }
         });
         
-        var upload = multer({storage:storage}).array('files', 1)
+        var upload = multer({storage:storage}).array('files', 12)
 
         upload(req, res, function(err) {
             if (err) {
@@ -57,14 +59,10 @@ class sellerController {
                 description : req.body.itemQuantity.desc
             }
 
-            Seller.create({payload},{
-                where :{
-                    id : sellerId
-                }
-            })
+            Item.create({payload})
 
             .then(data =>{
-                res.redirect('/seller')
+                res.redirect(`/seller/${sellerId}`)
             })
 
             .catch(err =>{
