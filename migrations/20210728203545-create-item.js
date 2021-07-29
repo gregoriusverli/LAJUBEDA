@@ -39,8 +39,7 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER
-      },
-
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

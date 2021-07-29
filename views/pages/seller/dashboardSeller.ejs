@@ -7,7 +7,7 @@
 <main>
 <div class="text-center">
   <h2>Welcome Seller, <%= data.userFullName() %></h2>
-  <a href="/seller/<%= data.id%>/upload">upload</a>
+  <a href="/seller/<%= data.id %>/upload">upload</a>
 </div>
 
 <div class="container mt-5">
@@ -38,7 +38,7 @@
                   <td><%= el.picture %></td>
                   <td><%= el.description %></td>
                   <td><%= el.url %></td>
-                  <td><a href="/customer/checkout/<%= el.id %>">See Details</a></td>
+                  <td><a href="/seller/<%= el.id %>/edit">Edit</a>   <a href="/seller/<%= el.id %>/delete">Delete</a></td>
           </tr>
           <% }) %>
       </tbody>

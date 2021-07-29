@@ -14,7 +14,6 @@ class sellerController {
             }
         })
          .then(data =>{
-             console.log(data)
              res.render('pages/seller/dashboardSeller', {data, formatToRupiah})
          })
 
@@ -23,6 +22,65 @@ class sellerController {
          })
 
     }
+
+    static getEditUploadedItem(req, res) {
+        const id = req.params.id
+        
+        Item.findByPk(id)
+            .then(data => {
+                res.render('pages/seller/editUpload', {data})
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static postEditItem(req, res) {
+        const id = req.params.id
+
+        // const imgFileName = "images/" + req.files[0].filename
+        
+        console.log(req.body)
+        
+        const data = {
+            itemName: req.body.itemName,
+            price: req.body.itemPrice,
+            weight: req.body.itemWeight,
+            quantity: req.body.itemQuantity,
+            // picture : imgFileName,
+            description : req.body.desc,
+            url: null,
+        }
+
+        Item.update(data, {
+            where: {id}
+        })
+            .then((data) => {
+                res.redirect(`/seller/${data[0]}`)
+            })
+            .catch((err) => {
+                res.send(err)
+            })
+
+    }
+
+    static getDeleteItem(req, res) {
+        const id = Number(req.params.id)
+        Item.destroy({
+            where: {
+                id
+            },
+            include: [User]
+        })
+            .then((data) => {
+                res.redirect(`/seller/${data}`)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+
 
     static uploadItemGet(req, res){
         const sellerId = req.params.id
@@ -53,7 +111,6 @@ class sellerController {
                 let error = ["shomething wrong"]
                 return res.render('/error', {error})
             }
-
             const imgFileName = "images/" + req.files[0].filename
             const payload = {
                 itemName: req.body.itemName,
@@ -61,7 +118,8 @@ class sellerController {
                 weight: req.body.itemWeight,
                 quantity: req.body.itemQuantity,
                 picture : imgFileName,
-                description : req.body.itemQuantity.desc,
+                description : req.body.desc,
+
                 url: null,
                 UserId: sellerId
             }
@@ -71,6 +129,7 @@ class sellerController {
                     UserId : sellerId
                 }
             })
+
 
             .then(data =>{
                 res.redirect(`/seller/${sellerId}`)
