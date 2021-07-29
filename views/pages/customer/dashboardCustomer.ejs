@@ -73,8 +73,8 @@
 
 <!--Daftar Produk-->
 <div class="container mt-5">
-    <div class="judul-produk" style="background-color: #f700ff; padding: 5px 10px;">
-        <h5 class="text-center" style="margin-top: 5px; color: rgb(0, 0, 0);">PRODUCTS LAJUBEDA</h5>
+    <div class="judul-produk" style="background-color: #f700ff; padding: 5px 10px; border: black;">
+        <h5 class="text-center" style="margin-top: 5px; color: rgb(0, 0, 0);">PRODUCTS LAJUBEDA<span><p>(Lapak Jual Beli Daleman)</p></span></h5>
     </div>
     <div class="row">
         <% data.forEach((el, i) => { %>
@@ -86,7 +86,7 @@
                     <p class="card-text"><%= formatToRupiah(el.price) %></p>
                     <p class="card-stock">Stock : <%= el.quantity %></p>
                     <p class="card-text">Description : <br><%= el.description %></p>
-                  <a href="#" class="btn btn-success d-grid mt-2">Add to Cart</a>
+                  <a href="#" class="btn btn-warning d-grid mt-2">Add to Cart</a>
                 </div>
             </div>
         </div>
