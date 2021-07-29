@@ -6,9 +6,45 @@
 <body class="container">
 <main>
 <div class="text-center">
-  <h2>Wellcome Seller <%= data.firstName + ' ' + data.lastName %></h2>
+  <h2>Welcome Seller, <%= data.userFullName() %></h2>
+  <a href="/seller/<%= data.id%>/upload">upload</a>
 </div>
 
+<div class="container mt-5">
+  <div class="judul-produk" style="background-color: #cf66ff; padding: 5px 10px;">
+      <h5 class="text-center" style="margin-top: 5px; color: rgb(0, 0, 0);">Your Products</h5>
+      <table >
+        <thead>
+          <tr>
+              <th>No.</th>
+              <th>Item Name</th>
+              <th>Price</th>
+              <th>Weight</th>
+              <th>Quantity</th>
+              <th>Picture</th>
+              <th>Description</th>
+              <th>URL</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% data.Items.forEach((el, i) => { %>
+          <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= el.itemName %></td>
+                  <td><%= formatToRupiah(el.price) %></td>
+                  <td><%= el.weight %></td>
+                  <td><%= el.quantity %></td>
+                  <td><%= el.picture %></td>
+                  <td><%= el.description %></td>
+                  <td><%= el.url %></td>
+                  <td><a href="/customer/checkout/<%= el.id %>">See Details</a></td>
+          </tr>
+          <% }) %>
+      </tbody>
+  </table>
+      </table>
+</div>
 </main>
 
 

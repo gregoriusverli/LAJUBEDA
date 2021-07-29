@@ -1,15 +1,21 @@
-const {User, Item} = require('../models')
+const { User, Item } = require('../models')
 const multer = require('multer')
 const fs = require('fs')
+const formatToRupiah = require('../helper/formatPricing')
 
 class sellerController {
     static dashboard(req, res){
         const sellerId = req.params.id
 
-        User.findByPk(sellerId)
+        User.findByPk(sellerId, {
+            include: [Item],
+            where: {
+                UserId: sellerId
+            }
+        })
          .then(data =>{
-            //  res.send(data)
-             res.render('pages/seller/dashboardSeller', {data})
+             console.log(data)
+             res.render('pages/seller/dashboardSeller', {data, formatToRupiah})
          })
 
          .catch(err =>{
@@ -20,7 +26,6 @@ class sellerController {
 
     static uploadItemGet(req, res){
         const sellerId = req.params.id
-
         res.render('pages/seller/uploadPage', {sellerId})
     }
 
@@ -29,7 +34,7 @@ class sellerController {
 
         var storage = multer.diskStorage({
             destination: function(req, file, cb){
-                var dir = "./public/images"
+                var dir = "./images"
         
                 if(!fs.existsSync(dir)){
                     fs.mkdirSync(dir)
@@ -41,7 +46,7 @@ class sellerController {
             }
         });
         
-        var upload = multer({storage:storage}).array('files', 12)
+        var upload = multer({storage:storage}).array('files', 1)
 
         upload(req, res, function(err) {
             if (err) {
@@ -53,16 +58,22 @@ class sellerController {
             const payload = {
                 itemName: req.body.itemName,
                 price: req.body.itemPrice,
-                wight: req.body.itemWeight,
+                weight: req.body.itemWeight,
                 quantity: req.body.itemQuantity,
                 picture : imgPath,
-                description : req.body.itemQuantity.desc
+                description : req.body.itemQuantity.desc,
+                url: String(imgPath),
+                UserId: sellerId
             }
 
-            Item.create({payload})
+            Item.create(payload,{
+                where :{
+                    UserId : sellerId
+                }
+            })
 
             .then(data =>{
-                res.redirect(`/seller/${sellerId}`)
+                res.redirect(`/`)
             })
 
             .catch(err =>{
