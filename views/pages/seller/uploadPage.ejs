@@ -7,7 +7,7 @@
 <main>
         <div class="jumbotron">
             <h3 class="text-center">Upload Item</h3>
-            <form action="/seller/upload" method="POST" enctype="multipart/form-data">
+            <form action="/seller/<%=sellerId%>/upload" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="itemName" class="form-label">Name Item</label>
                   <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Name Item">
@@ -26,6 +26,11 @@
                   <div class="mb-3">
                     <label for="itemQuantity" class="form-label">Stock</label>
                     <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" placeholder="Stock">
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="itemQuantity" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="desc" name="desc" placeholder="Description">
                   </div>
 
                   <div class="mb-3">
