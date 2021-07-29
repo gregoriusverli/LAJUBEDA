@@ -34,7 +34,7 @@ class sellerController {
 
         var storage = multer.diskStorage({
             destination: function(req, file, cb){
-                var dir = "./images"
+                var dir = "./public/images"
         
                 if(!fs.existsSync(dir)){
                     fs.mkdirSync(dir)
@@ -53,16 +53,16 @@ class sellerController {
                 let error = ["shomething wrong"]
                 return res.render('/error', {error})
             }
-            const imgPath = req.files[0].path
-            const imgFileName = req.files[0].filename
+
+            const imgFileName = "images/" + req.files[0].filename
             const payload = {
                 itemName: req.body.itemName,
                 price: req.body.itemPrice,
                 weight: req.body.itemWeight,
                 quantity: req.body.itemQuantity,
-                picture : imgPath,
+                picture : imgFileName,
                 description : req.body.itemQuantity.desc,
-                url: String(imgPath),
+                url: null,
                 UserId: sellerId
             }
 
@@ -73,7 +73,7 @@ class sellerController {
             })
 
             .then(data =>{
-                res.redirect(`/`)
+                res.redirect(`/seller/${sellerId}`)
             })
 
             .catch(err =>{

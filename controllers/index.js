@@ -1,5 +1,6 @@
 const { User } = require('../models/index')
 
+
 class Controller {
     static home(req, res){
         res.render('pages/home')
@@ -8,6 +9,7 @@ class Controller {
         res.render('pages/about')
     }
     static getLoginPage(req, res) {
+        req.session.isLogin = false
         res.render('pages/login')
     }
     static postLoginPage(req, res) {
@@ -17,9 +19,17 @@ class Controller {
             }
         })
             .then((data) => {
+                console.log(data.role);
                 if(data && req.body.password === data.password) {
-                    res.redirect('/')
-                } else {                
+                    req.session.isLogin = true
+                    if(data.role === "Customer"){
+                        res.redirect('/customer')
+                    }
+                    if (data.role === "Seller"){
+                        res.redirect(`/seller/${data.id}`)
+                    }
+                } else {      
+                    req.session.isLogin = false
                     res.send('Invalid username/password')
                 }
             })
@@ -48,6 +58,20 @@ class Controller {
             .catch((err) => {
                 res.send(err)
             })
+    }
+
+    static logout(req, res){
+        const userId = req.params.id
+        User.findByPk(userId)
+
+        .then(data =>{
+            req.session.isLogin = false
+            res.redirect('/')
+        })
+
+        .catch(err =>{
+            res.send(err)
+        })
     }
 }
 

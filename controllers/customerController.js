@@ -2,9 +2,9 @@ const { Op } = require('sequelize')
 const { Item, Transaction } = require('../models/index')
 const formatToRupiah = require('../helper/formatPricing')
 
-
 class customerController {
     static getItems(req, res) {
+        
         Item.findAll({
             order: [['id']],
             where: {
@@ -17,6 +17,7 @@ class customerController {
                 res.render('pages/customer/dashboardCustomer', {data, formatToRupiah})
             })
             .catch((err) => {
+                console.log(err);
                 res.send(err)
             })
     }
