@@ -1,3 +1,5 @@
 const formatToRupiah = (price) => {
-    return `Rp. ${price.toLowerCase('id')},-`
+    return `Rp. ${price.toLocaleString('id')},-`
 }
+
+module.exports = formatToRupiah

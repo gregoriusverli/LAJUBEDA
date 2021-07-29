@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+</head>
+<body>
+    <h1>CheckOut</h1>
+    <h3>"<%= data[0].itemName %>"</h3>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Weight</th>
+                <th>Quantity</th>
+                <th>Picture</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+                <% data.forEach((el, i) => { %>
+                <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= el.itemName %></td>
+                    <td><%= formatToRupiah(el.price) %></td>
+                    <td><%= el.weight %></td>
+                    <td><%= el.quantity %></td>
+                    <td><%= el.picture %></td>
+                    <td><a href="/customers/checkout/<%= el.id %>/buy">Buy</a>    <a href="/customer/checkout/<%= el.id %>/delete">Delete</a></td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
