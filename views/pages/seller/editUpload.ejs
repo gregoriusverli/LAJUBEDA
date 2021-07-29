@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./headerSeller'); %>
+</head>
+<body class="container">
+<main>
+        <div class="jumbotron">
+            <h3 class="text-center">Edit Upload Item</h3>
+            <form action="/seller/<%= data.id %>/edit" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                        <label for="itemName" class="form-label">Name Item</label>
+                        <input type="text" class="form-control" id="itemName" name="itemName" value="<%= data.itemName %>">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="itemPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="itemPrice" name="itemPrice" value="<%= data.price %>">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="itemWeight" class="form-label">Weight</label>
+                        <input type="number" class="form-control" id="itemWeight" name="itemWeight" value="<%= data.weight %>">
+                    </div>
+                    
+                  <div class="mb-3">
+                      <label for="itemQuantity" class="form-label">Stock</label>
+                      <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" value="<%= data.quantity %>">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="itemQuantity" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="desc" name="desc" value="<%= data.description %>">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="itemPictures" class="form-label">Upload item images</label>
+                        <input class="form-control" type="file" id="itemPictures" name="files" value="<%= data.picture %>" multiple>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                        <a href="/" class="btn btn-danger" aria-current="page">Cancel</a>
+                    </div>
+              </form>
+        </div>
+</main>
+
+<footer>
+  <p class="text-center text-muted">© Copyright 2021 | Shendy-Verli |The Awesome People</p>
+</footer>
+
+</body>
+</html>
