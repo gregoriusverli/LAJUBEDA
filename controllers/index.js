@@ -8,7 +8,7 @@ class Controller {
         res.render('pages/about')
     }
     static getLoginPage(req, res) {
-        res.render('login')
+        res.render('pages/login')
     }
     static postLoginPage(req, res) {
         User.findOne({
@@ -19,7 +19,7 @@ class Controller {
             .then((data) => {
                 if(data && req.body.password === data.password) {
                     res.redirect('/')
-                } else {
+                } else {                
                     res.send('Invalid username/password')
                 }
             })
@@ -28,7 +28,7 @@ class Controller {
             })
     }
     static getRegister(req, res) {
-        res.render('register')
+        res.render('pages/register')
     }
     static postRegister(req, res) {
         const data = {
