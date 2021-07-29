@@ -83,6 +83,14 @@ module.exports = (sequelize, DataTypes) => {
           msg: `URL name can not be empty`
         }
       }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          msg: `UserId name can not be empty`
+        }
+      }
     }
   }, {
     sequelize,

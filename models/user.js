@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsToMany(models.Item, {
         through: models.Transaction
+      }),
+      User.hasMany(models.Item, {
+        foreignKey: "UserId"
       })
     }
     userFullName() {
