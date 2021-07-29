@@ -7,7 +7,7 @@
 <main>
         <div class="jumbotron">
             <h3 class="text-center">Upload Item</h3>
-            <form action="/soldiers/apply" method="POST">
+            <form action="/seller/upload" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="itemName" class="form-label">Name Item</label>
                   <input type="text" class="form-control" id="itemName" name="itemName" placeholder="Name Item">
@@ -30,7 +30,7 @@
 
                   <div class="mb-3">
                     <label for="itemPictures" class="form-label">Upload item images</label>
-                    <input class="form-control" type="file" id="itemPictures" name="itemPictures" multiple>
+                    <input class="form-control" type="file" id="itemPictures" name="files" multiple>
                 </div>
 
                     <div class="text-center">
