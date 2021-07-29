@@ -119,6 +119,7 @@ class sellerController {
                 quantity: req.body.itemQuantity,
                 picture : imgFileName,
                 description : req.body.desc,
+
                 url: null,
                 UserId: sellerId
             }
@@ -129,7 +130,8 @@ class sellerController {
                 }
             })
 
-            .then(() => {
+
+            .then(data =>{
                 res.redirect(`/seller/${sellerId}`)
             })
 
