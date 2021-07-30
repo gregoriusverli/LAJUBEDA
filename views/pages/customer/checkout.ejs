@@ -18,6 +18,7 @@
                 <th>Weight</th>
                 <th>Quantity</th>
                 <th>Picture</th>
+                <th>Description</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -30,7 +31,8 @@
                     <td><%= el.weight %></td>
                     <td><%= el.quantity %></td>
                     <td><%= el.picture %></td>
-                    <td><a href="/customers/checkout/<%= el.id %>/buy">Buy</a>    <a href="/customer/checkout/<%= el.id %>/delete">Delete</a></td>
+                    <td><%= el.description %></td>
+                    <td><a href="/customer/checkout/<%= el.id %>/buy">Checkout</a></td>
                 </tr>
                 <% }) %>
         </tbody>
