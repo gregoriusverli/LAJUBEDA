@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const { Item, Transaction } = require('../models/index')
+const { User, Item, Transaction } = require('../models/index')
 const formatToRupiah = require('../helper/formatPricing')
 
 class customerController {
@@ -20,13 +20,11 @@ class customerController {
                 res.send(err)
             })
     }
-    static getCheckOutItem(req, res) { // decrement quantity barang
+
+    static getCheckOutItem(req, res) {
         const id = req.params.id
         Item.findAll({
-            // include: [Transaction],
-            where: {
-                id
-            }
+            where: {id}
         })
             .then((data) => {
                 res.render('pages/customer/checkout', {data, formatToRupiah})
@@ -35,6 +33,7 @@ class customerController {
                 res.send(err)
             })
     }
+
     static getBuyCheckOutItem(req, res) {
         const id = req.params.id
         Item.decrement('quantity', {
@@ -52,19 +51,7 @@ class customerController {
                 res.send(err)
             })
     }
-    static getDeleteCheckOutItem(req, res) {
-        const id = req.params.id
-        Transaction.destroy({
-            include: [Item],
-            where: {id}
-        })
-            .then(() => {
-                res.redirect('/customer/checkout')
-            })
-            .catch((err) => {
-                res.send(err)
-            })
-    }
+    
 }
 
 module.exports = customerController

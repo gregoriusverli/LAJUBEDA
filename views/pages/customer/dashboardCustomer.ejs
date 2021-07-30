@@ -85,7 +85,7 @@
                     <p class="card-text"><%= formatToRupiah(el.price) %></p>
                     <p class="card-stock">Stock : <%= el.quantity %></p>
                     <p class="card-text">Description : <br><%= el.description %></p>
-                  <a href="#" class="btn btn-warning d-grid mt-2">Add to Cart</a>
+                  <a href="/customer/checkout/<%= el.id %>" class="btn btn-warning d-grid mt-2">Buy</a>
                 </div>
             </div>
         </div>

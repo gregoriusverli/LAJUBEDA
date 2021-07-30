@@ -6,9 +6,13 @@ const tagpage = require('./tags')
 const checkLogin = require('../middleware/checkLogin')
 const multer = require('multer')
 
-router.use('/', startingpage)
 router.use('/seller',checkLogin, sellerpage)
 router.use('/customer',checkLogin, customerpage)
-router.use('/tag', tagpage)
+
+router.use('/seller', checkLogin, sellerpage)
+router.use('/customer', checkLogin, customerpage)
+router.use('/seller',checkLogin, sellerpage)
+router.use('/customer',checkLogin, customerpage)
+
 
 module.exports = router
