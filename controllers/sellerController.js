@@ -25,9 +25,9 @@ class sellerController {
     }
 
     static getEditUploadedItem(req, res) {
-        const id = req.params.id
+        const itemId = req.params.id
         
-        Item.findByPk(id)
+        Item.findByPk(itemId)
             .then(data => {
                 res.render('pages/seller/editUpload', {data})
             })
@@ -37,33 +37,117 @@ class sellerController {
     }
 
     static postEditItem(req, res) {
-        const id = req.params.id
+        const itemId = req.params.id
 
-        // const imgFileName = "images/" + req.files[0].filename
-        
-        console.log(req.body)
-        
-        const data = {
-            itemName: req.body.itemName,
-            price: req.body.itemPrice,
-            weight: req.body.itemWeight,
-            quantity: req.body.itemQuantity,
-            // picture : imgFileName,
-            description : req.body.desc,
-            url: null,
-        }
+        Item.findByPk(itemId)
 
-        Item.update(data, {
-            where: {id}
+        .then(data =>{
+            return data.UserId
         })
-            .then((data) => {
-                res.redirect(`/seller/${data[0]}`)
-            })
-            .catch((err) => {
-                res.send(err)
-            })
 
+        .then(data =>{
+            const sellerId = data
+            const storage = multer.diskStorage({
+                destination: function(req, file, cb){
+                    var dir = "./public/images"
+                    
+                    if(!fs.existsSync(dir)){
+                        fs.mkdirSync(dir)
+                    }
+                    cb(null, dir)
+                },
+                filename: function (req, file, cb) {
+                    cb(null, sellerId+'-'+file.originalname)
+                }
+            });
+            
+            const upload = multer({storage:storage}).array('files', 1)
+            
+            upload(req, res, function(err) {
+                if (err) {
+                    let error = ["shomething wrong"]
+                    return res.render('/error', {error})
+                }
+                const imgFileName = "images/" + req.files[0].filename
+                
+                const data = {
+                    itemName: req.body.itemName,
+                    price: req.body.itemPrice,
+                    weight: req.body.itemWeight,
+                    quantity: req.body.itemQuantity,
+                    picture : imgFileName,
+                    description : req.body.desc,
+                    url: null,
+                    UserId: sellerId
+                }
+                console.log(req.body ," <<< body");
+
+                Item.update(data, {
+                    where: {
+                        UserId: sellerId
+                    }
+                })
+
+                .then((data) => {
+                    res.redirect(`/seller/${data[0]}`)
+                })
+                .catch((err) => {
+                    res.send(err)
+                })
+            })
+        })
+
+        
+        // console.log(sellerId, "seller id");
+        // const storage = multer.diskStorage({
+        //     destination: function(req, file, cb){
+        //         var dir = "./public/images"
+        
+        //         if(!fs.existsSync(dir)){
+        //             fs.mkdirSync(dir)
+        //         }
+        //         cb(null, dir)
+        //     },
+        //     filename: function (req, file, cb) {
+        //         cb(null, sellerId+'-'+file.originalname)
+        //     }
+        // });
+        
+        // const upload = multer({storage:storage}).array('files', 1)
+        
+        // upload(req, res, function(err) {
+        //     if (err) {
+        //         let error = ["shomething wrong"]
+        //         return res.render('/error', {error})
+        //     }
+        //     const imgFileName = "images/" + req.files[0].filename
+            
+        //     const data = {
+        //         itemName: req.body.itemName,
+        //         price: req.body.itemPrice,
+        //         weight: req.body.itemWeight,
+        //         quantity: req.body.itemQuantity,
+        //         picture : imgFileName,
+        //         description : req.body.desc,
+        //         url: null,
+        //         UserId: sellerId
+        //     }
+        //     console.log(req.body ,"body 2");
+        //     console.log(req.files);
+            // Item.update(data, {
+            //     where: {
+            //         UserId: sellerId
+            //     }
+            // })
+            // .then((data) => {
+            //     res.redirect(`/seller/${data[0]}`)
+            // })
+            // .catch((err) => {
+            //     res.send(err)
+            // })
+        // })
     }
+
 
     static getDeleteItem(req, res) {
         const id = Number(req.params.id)
@@ -120,7 +204,6 @@ class sellerController {
                 quantity: req.body.itemQuantity,
                 picture : imgFileName,
                 description : req.body.desc,
-
                 url: null,
                 UserId: sellerId
             }

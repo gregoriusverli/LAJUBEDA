@@ -61,8 +61,7 @@ class Controller {
     }
 
     static logout(req, res){
-        const userId = req.params.id
-        User.findByPk(userId)
+        User.findAll()
 
         .then(data =>{
             req.session.isLogin = false
