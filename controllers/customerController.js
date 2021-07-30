@@ -17,7 +17,6 @@ class customerController {
                 res.render('pages/customer/dashboardCustomer', {data, formatToRupiah})
             })
             .catch((err) => {
-                console.log(err);
                 res.send(err)
             })
     }

@@ -49,43 +49,44 @@
 </div>
 
 <div class="container mt-5">
-  <div class="judul-produk" style="background-color: #cf66ff; padding: 5px 10px;">
+  <div class="judul-produk" style="background-color: #f700ff; padding: 5px 10px;">
       <h5 class="text-center" style="margin-top: 5px; color: rgb(0, 0, 0);">Your Products</h5>
-      <table >
-        <thead>
-          <tr>
-              <th>No.</th>
-              <th>Item Name</th>
-              <th>Price</th>
-              <th>Weight</th>
-              <th>Quantity</th>
-              <th>Picture</th>
-              <th>Description</th>
-              <th>URL</th>
-              <th>Action</th>
-          </tr>
-      </thead>
-      <tbody>
-          <% data.Items.forEach((el, i) => { %>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-dark table-hover mt-5">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Item Name</th>
+        <th>Price</th>
+        <th>Weight</th>
+        <th>Quantity</th>
+        <th>Picture</th>
+        <th>Description</th>
+
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% data.Items.forEach((el, i) => { %>
           <tr>
                   <td><%= i + 1 %></td>
                   <td><%= el.itemName %></td>
                   <td><%= formatToRupiah(el.price) %></td>
                   <td><%= el.weight %></td>
                   <td><%= el.quantity %></td>
-                  <td><%= el.picture %></td>
+                  <td><img src="/LAJUBEDA/public/images/-uniqlo-sesame-street.jpg"></td>
                   <td><%= el.description %></td>
-                  <td><%= el.url %></td>
-                  <td><a href="/seller/<%= el.id %>/edit">Edit</a>   <a href="/seller/<%= el.id %>/delete">Delete</a></td>
+                  <td><a class="btn btn-success btn-sm" href="/seller/<%= el.id %>/edit">Edit</a> | <a class="btn btn-danger btn-sm" href="/seller/<%= el.id %>/delete">Delete</a></td>
           </tr>
           <% }) %>
-      </tbody>
+    </tbody>
   </table>
-      </table>
 </div>
+
 </main>
-
-
 
 <footer>
   <p class="text-center text-muted">© Copyright 2021 | Shendy-Verli | The Awesome People</p>

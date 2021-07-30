@@ -8,9 +8,14 @@
 <main>
     <div class="jumbotron">
 <div class="text-center">
-    <a href="/login" class="btn btn-primary">Log In</a>
+      <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Login
+    </button>  
     <a href="/customer" class="btn btn-success">See Products</a>
-    <a href="/register" class="btn btn-info">Register</a>
+    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#registerModal">
+      Register
+      </button>  
 </div>
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -51,6 +56,85 @@
             </button>
           </div>
     </div>
+
+
+<!-- Modal Login-->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Please Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <form action="/login" method="post">
+        <div class="mb-3 row">
+          <label for="username" class="col-sm-2 col-form-label">Username</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" name="username">
+          </div>
+        </div>
+
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-success" value="Login">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal Register-->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Your Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+
+      <div class="text-center">
+      <form action="/register" method="post">
+        <label for="">First Name</label><br>
+        <input type="text" name="firstName"><br>
+        <label for="">Last Name</label><br>
+        <input type="text" name="lastName"><br>
+        <label for="">Username</label><br>
+        <input type="text" name="username"><br>
+        <label for="">Password</label><br>
+        <input type="password" name="password"><br>
+        <label for="">Phone Number</label><br>
+        <input type="text" name="phoneNumber"><br>
+        <label for="">Email</label><br>
+        <input type="email" name="email"><br>
+        <label for="">Home Address</label><br>
+        <input type="text" name="homeAddress"><br>
+        <label for="role">Role</label><br>
+        <input type="radio" name="role" value="Customer">
+        <label for="">Customer</label> | 
+        <input type="radio" name="role" value="Seller">
+        <label for="">Seller</label><br><br>
+        <input style="background-color: green;" type="submit" value="Create Acoount">
+        <button style="background-color: red;"><a href="/login">Cancel</a>
+    </form>
+      </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
 
 </main>
 

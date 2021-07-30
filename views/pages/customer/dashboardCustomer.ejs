@@ -77,10 +77,10 @@
     </div>
     <div class="row">
         <% data.forEach((el, i) => { %>
-        <div class="col-lg-2 col-md-2 com-sm-4 col-6 mt-3">
+        <div class="col-lg-2 col-md-2 com-sm-4 col-6 mt-3" >
             <div class="card text-center">
                 <img src="<%= el.picture %>" class="card-img-top" alt="...">
-                <div class="card-body ">
+                <div class="card-body" >
                   <h5 class="card-title"><%= el.itemName %></h5>
                     <p class="card-text"><%= formatToRupiah(el.price) %></p>
                     <p class="card-stock">Stock : <%= el.quantity %></p>

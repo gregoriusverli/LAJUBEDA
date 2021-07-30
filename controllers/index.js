@@ -19,7 +19,6 @@ class Controller {
             }
         })
             .then((data) => {
-                console.log(data.role);
                 if(data && req.body.password === data.password) {
                     req.session.isLogin = true
                     if(data.role === "Customer"){
@@ -30,11 +29,13 @@ class Controller {
                     }
                 } else {      
                     req.session.isLogin = false
-                    res.send('Invalid username/password')
+                    let error = "Invalid username/password"
+                    res.render('error', {error})
                 }
             })
             .catch((err) => {
-                res.send(err)
+                let error = "Invalid username/password"
+                res.render('error', {error})
             })
     }
     static getRegister(req, res) {
@@ -53,10 +54,13 @@ class Controller {
         }
         User.create(data)
             .then(() => {
-                res.redirect('/login')
+                let error = "Created Account Succes!"
+                res.render('error', {error})
+                // res.redirect('/login')
             })
             .catch((err) => {
-                res.send(err)
+                let error = "Invalid Data!"
+                res.render('error', {error})
             })
     }
 
