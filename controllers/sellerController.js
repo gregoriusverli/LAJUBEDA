@@ -14,6 +14,7 @@ class sellerController {
             }
         })
          .then(data =>{
+             console.log(data)
              res.render('pages/seller/dashboardSeller', {data, formatToRupiah})
          })
 
