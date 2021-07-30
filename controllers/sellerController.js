@@ -1,5 +1,6 @@
 const { User, Item } = require('../models')
 const multer = require('multer')
+const { Op } = require('sequelize')
 const fs = require('fs')
 const formatToRupiah = require('../helper/formatPricing')
 
@@ -14,12 +15,11 @@ class sellerController {
             }
         })
          .then(data =>{
-             console.log(data)
              res.render('pages/seller/dashboardSeller', {data, formatToRupiah})
          })
 
          .catch(err =>{
-             console.log(err);
+             res.send(err)
          })
 
     }
@@ -96,56 +96,6 @@ class sellerController {
                 })
             })
         })
-
-        
-        // console.log(sellerId, "seller id");
-        // const storage = multer.diskStorage({
-        //     destination: function(req, file, cb){
-        //         var dir = "./public/images"
-        
-        //         if(!fs.existsSync(dir)){
-        //             fs.mkdirSync(dir)
-        //         }
-        //         cb(null, dir)
-        //     },
-        //     filename: function (req, file, cb) {
-        //         cb(null, sellerId+'-'+file.originalname)
-        //     }
-        // });
-        
-        // const upload = multer({storage:storage}).array('files', 1)
-        
-        // upload(req, res, function(err) {
-        //     if (err) {
-        //         let error = ["shomething wrong"]
-        //         return res.render('/error', {error})
-        //     }
-        //     const imgFileName = "images/" + req.files[0].filename
-            
-        //     const data = {
-        //         itemName: req.body.itemName,
-        //         price: req.body.itemPrice,
-        //         weight: req.body.itemWeight,
-        //         quantity: req.body.itemQuantity,
-        //         picture : imgFileName,
-        //         description : req.body.desc,
-        //         url: null,
-        //         UserId: sellerId
-        //     }
-        //     console.log(req.body ,"body 2");
-        //     console.log(req.files);
-            // Item.update(data, {
-            //     where: {
-            //         UserId: sellerId
-            //     }
-            // })
-            // .then((data) => {
-            //     res.redirect(`/seller/${data[0]}`)
-            // })
-            // .catch((err) => {
-            //     res.send(err)
-            // })
-        // })
     }
 
 

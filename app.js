@@ -6,7 +6,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const app = express()
 const session = require('express-session')
-const Controller = require('./controllers/index')
+
 
 
 // app.set('views', path.join(__dirname, 'views'))
@@ -21,8 +21,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
-
-
 
   
 app.listen(port, () => {
